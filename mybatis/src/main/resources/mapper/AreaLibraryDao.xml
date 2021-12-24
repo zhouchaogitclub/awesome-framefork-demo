@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="zc.com.dao.AreaLibraryDao">
+
+    <resultMap id="BaseResultMap" type="zc.com.entity.AreaLibrary">
+        <!--@Table area_library-->
+        <result property="code" column="code" jdbcType="INTEGER"/>
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="pid" column="pid" jdbcType="INTEGER"/>
+        <result property="level" column="level" jdbcType="INTEGER"/>
+        <result property="isDelete" column="is_delete" jdbcType="INTEGER"/>
+        <result property="gmtCreate" column="gmt_create" jdbcType="TIMESTAMP"/>
+        <result property="gmtModify" column="gmt_modify" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          code, id, name, pid, level, is_delete, gmt_create, gmt_modify
+        from base_installation.area_library
+        where code = #{code}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          code, id, name, pid, level, is_delete, gmt_create, gmt_modify
+        from base_installation.area_library
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          code, id, name, pid, level, is_delete, gmt_create, gmt_modify
+        from base_installation.area_library
+        <where>
+            <if test="code != null">
+                and code = #{code}
+            </if>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="pid != null">
+                and pid = #{pid}
+            </if>
+            <if test="level != null">
+                and level = #{level}
+            </if>
+            <if test="isDelete != null">
+                and is_delete = #{isDelete}
+            </if>
+            <if test="gmtCreate != null">
+                and gmt_create = #{gmtCreate}
+            </if>
+            <if test="gmtModify != null">
+                and gmt_modify = #{gmtModify}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="code" useGeneratedKeys="true">
+        insert into base_installation.area_library(id, name, pid, level, is_delete, gmt_create, gmt_modify)
+        values (#{id}, #{name}, #{pid}, #{level}, #{isDelete}, #{gmtCreate}, #{gmtModify})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update base_installation.area_library
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="pid != null">
+                pid = #{pid},
+            </if>
+            <if test="level != null">
+                level = #{level},
+            </if>
+            <if test="isDelete != null">
+                is_delete = #{isDelete},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate},
+            </if>
+            <if test="gmtModify != null">
+                gmt_modify = #{gmtModify},
+            </if>
+        </set>
+        where code = #{code}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from base_installation.area_library where code = #{code}
+    </delete>
+
+</mapper>

@@ -1,9 +1,7 @@
 package com.zc;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.Objects;
 
 /**
  * @author yeyu
@@ -11,18 +9,10 @@ import java.util.List;
  */
 public final class SortUtils {
     public static void main(String[] args) {
-        int[] its = {1, -1, -9, 109, -10, 10, 5, 4, 6, 7, 100};
-        selectionSort(its);
+        int[] its = {-10, -9, -1, 1, 4, 5, 6, 7, 10, 100, 109};
+        bubbleSort(its);
+        System.out.println(Objects.equals("hello", "world"));
         System.out.println(Arrays.toString(its));
-        List<Integer> ints = new ArrayList<>();
-        ints.add(20);
-        ints.add(30);
-        ints.add(10);
-        ints.subList(1, ints.size() - 1).add(100);
-        System.out.println(ints);
-        List<Integer> integers = Collections.unmodifiableList(ints);
-        ints.add(200);
-        System.out.println(integers);
     }
 
     public static void selectionSort(int[] arr) {
@@ -44,7 +34,6 @@ public final class SortUtils {
     }
 
     public static void quickSort(int[] arr) {
-        System.out.println("Thread.currentThread().getName() = " + Thread.currentThread().getName());
     }
 
     public static void quickSortInner(int[] arr, int low, int high) {
@@ -59,7 +48,32 @@ public final class SortUtils {
             while (arr[high] > arr[middle]) {
                 high--;
             }
-
         }
+    }
+
+    public static void bubbleSort(int[] arr) {
+        if (arr == null || arr.length <= 1) {
+            return;
+        }
+
+        for (int i = 0; i < arr.length - 1; i++) {
+            boolean changed = false;
+            for (int j = 0; j < arr.length - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    exchange(arr, j, j + 1);
+                    changed = true;
+                }
+            }
+            System.out.println(Arrays.toString(arr));
+            if (!changed) {
+                return;
+            }
+        }
+    }
+
+    private static void exchange(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
 }
