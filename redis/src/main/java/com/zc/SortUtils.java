@@ -1,7 +1,6 @@
 package com.zc;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 /**
  * @author yeyu
@@ -11,7 +10,6 @@ public final class SortUtils {
     public static void main(String[] args) {
         int[] its = {-10, -9, -1, 1, 4, 5, 6, 7, 10, 100, 109};
         bubbleSort(its);
-        System.out.println(Objects.equals("hello", "world"));
         System.out.println(Arrays.toString(its));
     }
 
