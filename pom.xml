@@ -13,6 +13,8 @@
         <module>webflux</module>
         <module>mybatis</module>
         <module>mongo</module>
+        <module>distributed-lock</module>
+        <module>sentinel</module>
     </modules>
 
     <name>awesome-framefork-demo</name>
