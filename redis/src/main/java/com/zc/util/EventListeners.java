@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class EventListeners {
     @EventListener
-//    @Async
     public void sendMessage(MyEvent event) {
         System.out.println(Thread.currentThread().getName());
         System.out.println("-----" + event);

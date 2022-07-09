@@ -1,7 +1,7 @@
 package com.zc;
 
-import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
+import net.sf.cglib.proxy.Enhancer;
+import net.sf.cglib.proxy.MethodInterceptor;
 
 /**
  * @author yeyu
@@ -9,7 +9,23 @@ import reactor.core.publisher.Mono;
  */
 public final class WebClientUtils {
     public static void main(String[] args) {
-        WebClient webClient = WebClient.create();
-        Mono<String> mono = webClient.get().uri("https://www.baidu.com").retrieve().bodyToMono(String.class);
+        Enhancer enhancer = new Enhancer();
+        enhancer.setSuperclass(A.class);
+        enhancer.setCallback((MethodInterceptor) (obj, method, args1, proxy) -> {
+            if (method.getName().contains("hello")) {
+                System.out.println("toString");
+            }
+            return proxy.invokeSuper(obj, args1);
+        });
+        A x = ((A) enhancer.create());
+        x.hello();
+        System.out.println(x);
     }
+
+    public static class A {
+        public void hello() {
+            System.out.println("hello A");
+        }
+    }
+
 }

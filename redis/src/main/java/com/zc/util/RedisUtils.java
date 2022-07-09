@@ -20,20 +20,10 @@ public final class RedisUtils {
     }
 
     public static void set(String key, String value) {
-        try {
-            template.opsForValue().set(key, value);
-        } catch (Throwable t) {
-            log.error("redisTemplate set error,key:{}, value:{}", key, value, t);
-            throw t;
-        }
+        template.opsForValue().set(key, value);
     }
 
     public static String get(String key) {
-        try {
-            return template.opsForValue().get(key);
-        } catch (Throwable t) {
-            log.error("redisTemplate get error, key:{}", key, t);
-            throw t;
-        }
+        return template.opsForValue().get(key);
     }
 }
