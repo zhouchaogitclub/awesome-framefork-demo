@@ -1,4 +1,4 @@
-package com.zc.future;
+package com.zc;
 
 import com.google.common.util.concurrent.*;
 
