@@ -6,6 +6,7 @@ import org.apache.shardingsphere.api.config.sharding.ShardingRuleConfiguration;
 import org.apache.shardingsphere.api.config.sharding.TableRuleConfiguration;
 import org.apache.shardingsphere.api.config.sharding.strategy.InlineShardingStrategyConfiguration;
 import org.apache.shardingsphere.shardingjdbc.api.ShardingDataSourceFactory;
+import org.apache.shardingsphere.underlying.common.config.properties.ConfigurationPropertyKey;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -37,7 +38,7 @@ public class ShardingJdbcConfig {
         shardingRuleConfig.getTableRuleConfigs().add(getOrderTableRuleConfiguration());
         // 其他配置
         Properties properties = new Properties();
-        properties.put("sql.show", "true");
+        properties.put(ConfigurationPropertyKey.SQL_SHOW.getKey(), "true");
         return ShardingDataSourceFactory.createDataSource(dataSourceMap, shardingRuleConfig, properties);
     }
 

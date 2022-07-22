@@ -16,6 +16,8 @@
         <module>distributed-lock</module>
         <module>sentinel</module>
         <module>netty-demo</module>
+        <module>zookeeper-demo</module>
+        <module>mq</module>
     </modules>
 
     <name>awesome-framefork-demo</name>

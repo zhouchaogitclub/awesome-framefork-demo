@@ -37,7 +37,7 @@ public class OrderMapperTest {
 
     @Test
     public void selectListByIds() {
-        List<Long> idList = Arrays.asList(593141944457101312L, 593141944922669057L);
+        List<Long> idList = Arrays.asList(752173331775488001L, 752173332962476032L);
         List<Order> orderList = this.orderMapper.selectListByIds(idList);
         System.out.println(orderList);
     }
